@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Piramid {
-    int[] [] table;
     static int razmernost;
     Piramid(){
         main(new String[]{""});
@@ -28,5 +27,5 @@ public class Piramid {
             System.out.println();
             }
 
-        };
+        }
     }
