@@ -1,16 +1,17 @@
 import java.util.Scanner;
 
-public class Piramid {
+public class Piramid implements Game{
     static int razmernost;
-    Piramid(){
-        main(new String[]{""});
-    }
 
-    public static void main(String[] args) {
+    public void play() {
 
-        System.out.println("Введите \"длину основания\" пирамиды");
+        System.out.println("Введите \"длину основания\" пирамиды (максимум 20)");
         Scanner scan = new Scanner(System.in);
         razmernost = scan.nextInt();
+        if (razmernost > 20) {
+            System.out.println("надо было не больше 20 число воодить");
+            System.exit(0);
+        }
         int[] [] table = new int[razmernost][razmernost];
         int maxVysota = (razmernost + 1) / 2;
         int vysota;
