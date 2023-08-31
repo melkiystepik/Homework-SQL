@@ -1,0 +1,1 @@
+select maker, speed from laptop where hd >= 100

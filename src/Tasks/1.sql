@@ -1,0 +1,1 @@
+select model, speed, hd from pc where price < cast(500 as money)

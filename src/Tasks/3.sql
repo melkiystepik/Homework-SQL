@@ -1,0 +1,1 @@
+select model, ram, screen from laptop where price > cast(1000 as money)
