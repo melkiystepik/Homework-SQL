@@ -1,1 +1,1 @@
-select model, price from printer where price = max(select price from printer)
+select model, price from printer where price = (select MAX(price) from printer)

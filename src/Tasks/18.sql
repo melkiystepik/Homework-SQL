@@ -1,0 +1,1 @@
+select maker, price from printer where price = (select MIN(price) from printer)

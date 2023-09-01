@@ -1,1 +1,1 @@
-select maker from pc where speed >= 450
+select distinct maker from pc where speed >= 450

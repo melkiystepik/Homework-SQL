@@ -1,0 +1,1 @@
+select avg(speed) from pc where maker = 'Asus'

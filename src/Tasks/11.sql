@@ -1,0 +1,1 @@
+select AVG(pc.speed) from pc
