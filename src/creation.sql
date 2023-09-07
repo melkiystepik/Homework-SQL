@@ -7,7 +7,7 @@ create table product (
     primary key (model)
 );
 create table pc (
-    code int unique primary key,
+    code SERIAL primary key,
     model varchar(50),
     speed int,
     ram int,
@@ -17,7 +17,7 @@ create table pc (
     foreign key (model) references product (model)
 );
 create table laptop (
-    code int unique not null primary key,
+    code SERIAL primary key,
     model varchar(50),
     speed int,
     ram int,
@@ -27,7 +27,7 @@ create table laptop (
     foreign key (model) references product (model)
 );
 create table printer (
-    code int unique not null primary key,
+    code SERIAL primary key,
     model varchar(50),
     color char(1),
     type varchar(10),
