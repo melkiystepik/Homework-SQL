@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="HomeworkStsepanenka">
+    <output-path>$PROJECT_DIR$/out/artifacts/HomeworkStsepanenka</output-path>
+    <root id="archive" name="HomeworkStsepanenka.jar">
+      <element id="module-output" name="HomeworkTask1" />
+    </root>
+  </artifact>
+</component>
