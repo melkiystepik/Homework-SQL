@@ -1,1 +1,0 @@
-select avg(laptop.speed) from laptop where price > cast(1000 as money)

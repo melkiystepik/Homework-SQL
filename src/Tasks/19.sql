@@ -1,1 +1,0 @@
-select maker, avg(screen) from laptop group by maker

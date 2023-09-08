@@ -1,1 +1,0 @@
-select Distinct pc.maker from pc join laptop on pc.maker = laptop.maker where laptop.speed >= 750 and pc.speed > 750

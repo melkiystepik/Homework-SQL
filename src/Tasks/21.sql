@@ -1,1 +1,0 @@
-select maker, max(price) from pc group by maker

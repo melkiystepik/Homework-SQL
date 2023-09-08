@@ -1,1 +1,0 @@
-select maker, count(maker) from pc group by maker having count(maker) >= 3

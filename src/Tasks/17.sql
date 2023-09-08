@@ -1,1 +1,0 @@
-select distinct laptop.type, laptop.model, laptop.speed from laptop, pc where laptop.speed < pc.speed
