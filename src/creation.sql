@@ -4,7 +4,7 @@ create table if not exists product (
     maker varchar(50),
     model varchar(50) unique,
     type varchar (10),
-    primary key (model) on delete cascade
+    primary key (model)
 );
 create table if not exists pc (
     code SERIAL primary key,
@@ -14,7 +14,7 @@ create table if not exists pc (
     hd real,
     cd varchar(5),
     price decimal,
-    foreign key (model) references product (model)
+    foreign key (model) references product (model) on delete cascade
 );
 create table if not exists laptop (
     code SERIAL primary key,
@@ -24,7 +24,7 @@ create table if not exists laptop (
     hd real,
     price decimal,
     screen int,
-    foreign key (model) references product (model)
+    foreign key (model) references product (model) on delete cascade
 );
 create table if not exists printer (
     code SERIAL primary key,
@@ -32,5 +32,5 @@ create table if not exists printer (
     color char(1),
     type varchar(10),
     price decimal,
-    foreign key (model) references product (model)
+    foreign key (model) references product (model) on delete cascade
 )

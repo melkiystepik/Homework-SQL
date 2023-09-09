@@ -52,8 +52,9 @@ join pc as pc2 on pc1.model > pc2.model
 where pc1.speed=pc2.speed and pc1.ram = pc2.ram
 order by pc1.model;
 ---17
-select distinct laptop.model from laptop
-join pc on laptop.speed < pc.speed;
+SELECT product.type, laptop.model, speed
+FROM laptop JOIN product ON product.model = laptop.model
+WHERE speed < (SELECT MIN(speed) FROM pc);
 ---18
 SELECT distinct product.maker, colprinter.price FROM printer AS colprinter
 JOIN product ON colprinter.model = product.model
