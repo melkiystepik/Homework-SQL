@@ -9,7 +9,7 @@ select * from printer where color =  'y';
 ---5
 select model, speed, hd from pc where (cd = '12x' or cd = '24x') and price < 600;
 ---6
-select product.maker, laptop.speed from laptop
+select distinct product.maker, laptop.speed from laptop
 join product on product.model = laptop.model
 where (laptop.hd >= 100);
 ---7
@@ -55,9 +55,11 @@ order by pc1.model;
 select distinct laptop.model from laptop
 join pc on laptop.speed < pc.speed;
 ---18
-select product.maker, printer.price from printer
-join product on printer.model = product.model
-where price = (select MIN(price) from printer);
+SELECT distinct product.maker, colprinter.price FROM printer AS colprinter
+JOIN product ON colprinter.model = product.model
+WHERE colprinter.color = 'y'
+  AND colprinter.price = (SELECT MIN(price) FROM printer WHERE color = 'y')
+ORDER BY colprinter.price
 ---19
 select product.maker, avg(laptop.screen) from laptop
 join product on laptop.model = product.model
@@ -70,27 +72,29 @@ join product on pc.model = product.model group by maker;
 ---22
 select speed, avg(price) from pc where speed > 600 group by speed;
 ---23
-select distinct product.maker from product
-join laptop on product.model = laptop.model
-where laptop.speed >= 750
-union
-select distinct product.maker from product
-join pc on product.model = pc.model
-where pc.speed >= 750;
+SELECT DISTINCT product.maker FROM product
+JOIN laptop ON product.model = laptop.model
+WHERE laptop.speed >= 750
+INTERSECT
+SELECT DISTINCT product.maker FROM product
+JOIN pc ON product.model = pc.model
+WHERE pc.speed >= 750;
 ---24
-select product.model from product
-join pc on product.model = pc.model
-where pc.price = (select max(pc.price) from pc)
-union
-select product.model from product
-join printer on product.model = printer.model
-where printer.price = (select max(printer.price) from printer)
-union
-select product.model from product
-join laptop on product.model = laptop.model
-where laptop.price = (select max(laptop.price) from laptop);
+SELECT product.model FROM product
+JOIN (SELECT MAX(price) AS max_price FROM (
+SELECT price FROM pc
+UNION ALL
+SELECT price FROM printer
+UNION ALL
+SELECT price FROM laptop) AS prices) AS max_prices
+ON product.model IN (
+SELECT model FROM pc WHERE price = max_prices.max_price
+UNION ALL
+SELECT model FROM printer WHERE price = max_prices.max_price
+UNION ALL
+SELECT model FROM laptop WHERE price = max_prices.max_price);
 ---25
-select printers.maker from (select * from product where product.type = 'printer') as printers
+select distinct printers.maker from (select * from product where product.type = 'printer') as printers
 join (select * from product where product.type = 'pc') as pcs on printers.maker = pcs.maker
 join pc on pc.model=pcs.model
 where  pc.speed = (select max(pc.speed) from pc)

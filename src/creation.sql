@@ -1,32 +1,32 @@
 -- drop table product, pc, laptop, printer;
 
-create table product (
+create table if not exists product (
     maker varchar(50),
     model varchar(50) unique,
     type varchar (10),
-    primary key (model)
+    primary key (model) on delete cascade
 );
-create table pc (
+create table if not exists pc (
     code SERIAL primary key,
     model varchar(50),
     speed int,
     ram int,
-    hd float,
+    hd real,
     cd varchar(5),
     price decimal,
     foreign key (model) references product (model)
 );
-create table laptop (
+create table if not exists laptop (
     code SERIAL primary key,
     model varchar(50),
     speed int,
     ram int,
-    hd float,
+    hd real,
     price decimal,
     screen int,
     foreign key (model) references product (model)
 );
-create table printer (
+create table if not exists printer (
     code SERIAL primary key,
     model varchar(50),
     color char(1),
